@@ -10,10 +10,8 @@ class Solution:
                     nx, ny = dx + position_x, dy + position_y
                     if  0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == '1':
                         stack.append((nx,ny))
-                        #print(stack)
                 grid[position_x][position_y] = '0'
 
-        #print("First:",grid)
 
     def numIslands(self, grid: List[List[str]]) -> int:
         rows = len(grid)
@@ -24,5 +22,4 @@ class Solution:
                 if grid[i][j] == '1':
                     island_count += 1
                     self.dfs(i,j,grid)
-                    #print(grid)
         return island_count
