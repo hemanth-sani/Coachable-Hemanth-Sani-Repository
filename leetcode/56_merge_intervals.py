@@ -2,25 +2,24 @@ class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         result = []
         sorted_intervals = sorted(intervals, key = lambda x: x[0])
-        length_of_intervals = len(sorted_intervals)
-        interval = 1
-        starting = sorted_intervals[0][0]
-        ending = sorted_intervals[0][1]
+        N = len(sorted_intervals)
+        i = 1
+        start, end = sorted_intervals[0]
         
-        while interval < length_of_intervals:
-            next_starting = sorted_intervals[interval][0]
-            next_ending = sorted_intervals[interval][1]
-            if ending >= next_starting:
-                max_interval_value = max(ending, next_ending)
-                min_interval_value = min(starting, next_starting)
-                starting, ending = min_interval_value, max_interval_value
+        while i < N:
+            next_start = sorted_intervals[i][0]
+            next_end = sorted_intervals[i][1]
+            if end >= next_start:
+                max_interval_value = max(end, next_end)
+                min_interval_value = min(start, next_start)
+                start, end = min_interval_value, max_interval_value
             else:
-                result.append([starting, ending])
-                starting, ending = sorted_intervals[interval][0], sorted_intervals[interval][1]
+                result.append([start, end])
+                start, end = sorted_intervals[i][0], sorted_intervals[i][1]
 
-            interval += 1
+            i += 1
 
-        result.append([starting, ending])
+        result.append([start, end])
         return result
 
             
